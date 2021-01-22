@@ -499,6 +499,9 @@ target_link_libraries(pivx-cli
         rustzcash
         ${Boost_LIBRARIES} ${OPENSSL_LIBRARIES} ${LIBEVENT_LIB} ${sodium_LIBRARY_RELEASE} -ldl pthread
         )
+if (${CMAKE_SYSTEM_NAME} MATCHES "Darwin")
+    target_link_libraries(pivx-cli "-framework Cocoa")
+endif()
 if($ENV{target} MATCHES "Windows")
     target_link_libraries(pivx-cli ${WINDOWS_LDADD})
 endif()
@@ -520,6 +523,9 @@ target_link_libraries(pivx-tx
         rustzcash
         ${Boost_LIBRARIES} ${OPENSSL_LIBRARIES} ${LIBEVENT_LIB} ${sodium_LIBRARY_RELEASE} -ldl pthread
         )
+if (${CMAKE_SYSTEM_NAME} MATCHES "Darwin")
+    target_link_libraries(pivx-tx "-framework Cocoa")
+endif()
 if($ENV{target} MATCHES "Windows")
     target_link_libraries(pivx-tx ${WINDOWS_LDADD})
 endif()
